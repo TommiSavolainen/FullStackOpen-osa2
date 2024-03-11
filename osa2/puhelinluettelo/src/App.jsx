@@ -3,7 +3,7 @@ import axios from 'axios'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
-
+import noteService from './services/persons'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -19,8 +19,8 @@ const App = () => {
 
   useEffect(() => {
     console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
+    noteService
+      .getAll()
       .then(response => {
         console.log('promise fulfilled')
         setPersons(response.data)
@@ -35,9 +35,13 @@ const App = () => {
       number: newNumber
     }
     if (persons.findIndex(person => person.name === noteObject.name)===-1){
-      setPersons(persons.concat(noteObject))
-      setNewName('')
-      setNewNumber('')
+      noteService
+        .create(noteObject)
+        .then(response => {
+          setPersons(persons.concat(response.data))
+          setNewName('')
+          setNewNumber('')
+        })
     }else {
       alert(`${newName} is already added to phonebook`)
     }

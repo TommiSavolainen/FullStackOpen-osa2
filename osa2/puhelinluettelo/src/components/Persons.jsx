@@ -9,7 +9,7 @@ return(
 const Person = (props)=>{
     return(
       <>
-      <p key={props.name}>{props.name} {props.number}</p>
+      <p key={props.name}>{props.name} {props.number} <button>delete</button> </p>
       </>
     )
   }
