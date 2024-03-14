@@ -27,6 +27,14 @@ const App = () => {
       })
   }, [])
 
+  const klikattiinDelete = (name, id) => {
+    if (window.confirm(`Delete ${name}?`)){
+      noteService
+        .deletePerson(id)
+      const filterList = persons.filter(person => person.id != id)
+      setPersons(filterList)
+    }
+  }
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -76,7 +84,7 @@ const App = () => {
       <h2>add a new</h2>
       <PersonForm addPerson={addPerson} newName={newName} handleNoteChange={handleNoteChange} newNumber={newNumber} handleNumberChange={handleNumberChange}/>
       <h2>Numbers</h2>
-      <Persons personsToShow={personsToShow}/>
+      <Persons personsToShow={personsToShow} klikattiinDelete={klikattiinDelete} />
     </div>
   )
 
