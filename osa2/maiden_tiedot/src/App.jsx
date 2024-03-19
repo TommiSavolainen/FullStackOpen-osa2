@@ -5,6 +5,8 @@ import ShowCountries from './components/ShowCountries'
 function App() {
   const [countries, setCountries] = useState([])
   const [results, setResults] = useState([])
+  const [weather, setWeather] = useState([])
+  // const api_key = import.meta.env.VITE_SOME_KEY
 
   useEffect(() => {
     noteService
@@ -28,7 +30,7 @@ function App() {
       <div>
         <label htmlFor="haku">find countries </label>
         <input onChange={filterCountries} />
-        <ShowCountries results={results} countries={countries} setResults={setResults}></ShowCountries>
+        <ShowCountries results={results} countries={countries} setResults={setResults} setWeather={setWeather} weather={weather}></ShowCountries>
       </div>
     </>
   )
